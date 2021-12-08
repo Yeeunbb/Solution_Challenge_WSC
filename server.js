@@ -6,7 +6,7 @@ const { runInNewContext } = require('vm');
 const cookieParser = require('cookie-parser');
 const fs = require('fs');
 const session = require('express-session');
-let port = 8080;
+// let port = 8080;
 
 //Cloud Firestore 초기화
 var admin = require("firebase-admin");
@@ -486,6 +486,12 @@ async function getD(){
     });
 }
 
-server.listen(port, () => {
-    console.log("app is running on port " + port);
+const port = 3000;
+server.listen(process.env.PORT || port, () => {
+  console.log("app is running on port " + port);
 });
+//heroku 배포시 port를 지정하면 안됨.
+
+// server.listen(port, () => {
+//     console.log("app is running on port " + port);
+// });
